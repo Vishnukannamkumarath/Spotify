@@ -5,13 +5,13 @@ const song=require('./models/songModel');
 require('dotenv').config();
 const app=express();
 app.disable("etag");
-const PORT=process.env.PORT||3000;
 app.use((req, res, next) => {
   res.setHeader('Cache-Control', 'no-store');
   next();
 });
 app.use(cors());
 app.use(express.json());
+const PORT=process.env.PORT||3000;
 mongoose.connect(process.env.MONGO_URI).then(()=>console.log('MongoDB connected'))
 .catch((error)=>console.log(error));
 

@@ -11,8 +11,8 @@ app.use((req, res, next) => {
 });
 app.use(cors());
 app.use(express.json());
-const PORT=process.env.PORT||3000;
-mongoose.connect(process.env.MONGO_URI).then(()=>console.log('MongoDB connected'))
+const port=process.env.PORT||3000;
+mongoose.connect(process.env.URI).then(()=>console.log('MongoDB connected'))
 .catch((error)=>console.log(error));
 
 
@@ -40,8 +40,6 @@ app.get('/songs',async(req,res)=>{
 
       return { ...song._doc, cover: coverUrl,url:songUrl };
     });
-
-    console.log('Fetched Songs:', updatedSongs);
     res.json(updatedSongs);
 
     }catch(error){
@@ -51,6 +49,6 @@ app.get('/songs',async(req,res)=>{
 })
 
 
-app.listen(PORT,()=>{
-    console.log(`listening on port ${PORT}`);
+app.listen(port,()=>{
+    console.log(`listening on port ${port}`);
 })
